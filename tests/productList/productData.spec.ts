@@ -4,7 +4,10 @@ import { writeFile } from 'fs/promises';
 import { mkdirSync, existsSync } from 'fs';
 
 
-test('DEBL-1 | Retrieve and store product data from Product List Page', async ({ productListPage, page }) => {
+test('DEBL-1 | Retrieve and store product data from Product List Page',
+    { tag: ['@DEBL-1', '@smoke', '@regression'] },
+    async ({ productListPage, page }) => {
+        
     const productDataArray: { name: string; price: number; link: string }[] = [];
     const outputDir = './output';
     if (!existsSync(outputDir)) mkdirSync(outputDir);
