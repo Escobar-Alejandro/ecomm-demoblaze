@@ -1,6 +1,6 @@
 import { Page, Locator } from '@playwright/test';
-import { Environment } from '@models/enums';
-const { ENVIRONMENT } = process.env;
+import { Environment, TIMEOUTS } from '@models/enums';
+const { ENVIRONMENT, BASE_URL } = process.env;
 
 export default abstract class BasePage {
     protected page: Page;
@@ -11,6 +11,18 @@ export default abstract class BasePage {
 
     getPage(): Page {
         return this.page;
+    }
+
+    getBaseUrl(): string {
+        if (!BASE_URL) {
+            throw new Error('BASE_URL environment variable is not defined.');
+        }
+        return BASE_URL;
+    }
+
+    async navigateTo(path = '' ): Promise<void> {
+        const url = `${this.getBaseUrl()}${path}`;
+        await this.page.goto(url, { waitUntil: 'domcontentloaded', timeout: TIMEOUTS.Default });
     }
 
     /**
@@ -107,6 +119,16 @@ export default abstract class BasePage {
 
         } catch (error) {
             throw new Error(`Failed to get locator`, { cause: error });
+        }
+    }
+
+    async tryWaitForElementToBeHidden(locator: Locator, timeout = TIMEOUTS.Short): Promise<boolean> {
+        try {
+            await locator.waitFor({ state: 'hidden', timeout });
+            return true;
+        } catch (e) {
+            console.warn(`Element did not become hidden within ${timeout} ms`, { cause: e });
+            return false;
         }
     }
 
