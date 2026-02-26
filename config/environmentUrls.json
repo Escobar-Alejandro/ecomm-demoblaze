@@ -1,0 +1,7 @@
+{
+    "baseUrls": {
+    "prod": "https://www.demoblaze.com/",
+    "staging": "https://staging.demoblaze.com/",
+    "dev": "https://dev.demoblaze.com/"
+}
+}

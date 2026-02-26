@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true,
+    "pretty": true,
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "module": "CommonJS",
+    "target": "ESNext",
+    "types": ["node"],
+    "paths": {
+      "@tests/*": ["./tests/*"],
+      "@models/*": ["./models/*"],
+      "@enums": ["./models/enums/index"],
+      "@poms": ["./page-objects/index"],
+      "@config/*": ["./config/*"],
+      "@fixtures/*": ["./fixtures/*"]
+    }
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "./node_modules",
+    "./test-results",
+    "./playwright-report"
+  ]
+}
