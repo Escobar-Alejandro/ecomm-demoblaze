@@ -1,6 +1,7 @@
 import { selectEnvironment } from '@config/environmentPicker';
 import './config/loadEnv';
 import { defineConfig, devices } from '@playwright/test';
+import { TIMEOUTS } from '@enums';
 
 process.env.BASE_URL = selectEnvironment();
 
@@ -18,6 +19,7 @@ process.env.BASE_URL = selectEnvironment();
 export default defineConfig({
     testDir: './tests',
     /* Run tests in files in parallel */
+    timeout: TIMEOUTS.Long,
     fullyParallel: true,
     /* Fail the build on CI if you accidentally left test.only in the source code. */
     forbidOnly: !!process.env.CI,
