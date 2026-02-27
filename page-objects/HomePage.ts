@@ -1,5 +1,5 @@
 import { Page, Locator } from '@playwright/test';
-import { BasePage, Header} from '@poms';
+import { BasePage, Header } from '@poms';
 import { Environment } from '@enums';
 
 export default class HomePage extends BasePage {

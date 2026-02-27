@@ -9,9 +9,9 @@ export default class CartPage extends BasePage {
     productContainerList: Locator;
     nameField: Locator;
     countryField: Locator;
-    cityField: Locator
+    cityField: Locator;
     creditCardField: Locator;
-    monthField: Locator
+    monthField: Locator;
     yearField: Locator;
     purchaseBtn: Locator;
     closeBtn: Locator;
