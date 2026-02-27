@@ -2,6 +2,10 @@
 
 Automation testing framework for the Demoblaze e-commerce site located in: https://www.demoblaze.com/ , built with TypeScript + Playwright using a Page Object Model (POM) design pattern.
 
+Project key: DEBL.
+
+A Trello board has been created to track tasks, stories and test cases. Please reach out to the workspace manager to be added.
+
 ## 1) Contents
 
 - End-to-end UI tests for key user flows:
@@ -186,3 +190,15 @@ How to run manually in GitHub:
 ```bash
 npx playwright test --project=chromium
 ```
+
+## 11) Future plans
+
+The ecommerce will eventually grow and we must prepare our framework for that. As the test case repository grows there will be multiple workflows divided into each feature, running periodically at different hours to keep resource usage controlled.
+
+Planned features:
+- Actions manager
+	- Encapsulate commonly used methods and divide them in different clases like "MouseActions", "KeyboardActions", "BrowserActions" and "ElementActions"
+- Scheduled workflows and customizable workflows on demand (Possibility to use different tags or variables before running them).
+- Integration with test case manager (like Xray or Testrail).
+- Dynamic test data handling integrating Demoblaze API to improve test case speed when needed.
+- Switch locator system on getting a Timeout exception when looking for an element, if using a Prod locator try using a locator variant from one level deeper like Staging, this way we plan ahead for new features and tests don't become flaky after a deploy. If this occurs, the method will warn that the locator must be updated, but the test will not fail to flakyness. (Using a short timeout to avoid wasting too much time and resources)
