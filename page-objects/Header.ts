@@ -19,19 +19,19 @@ export default class Header extends BasePage {
 
     readonly headerLocators = {
         cartBtn: {
-            [Environment.Prod]: this.page.locator('a.nav-link', { hasText: /Cart/i }),
+            [Environment.Prod]: this.page.locator('a[id="cartur"]'),
             [Environment.Staging]: 'new-locator-for-staging',
         },
         contactBtn: this.page.locator('a.nav-link', { hasText: /Contact/i }),
-        logInBtn: this.page.locator('a.nav-link', { hasText: /Log in/i }),
-        signUpBtn: this.page.locator('a.nav-link', { hasText: /Sign up/i }),
+        logInBtn: this.page.locator('a[id="login2"]'),
+        signUpBtn: this.page.locator('a[id="signin2"]'),
         signUpUserField: this.page.locator('input[id="sign-username"]'),
         signUpPasswordField: this.page.locator('input[id="sign-password"]'),
         signUpBtnInModal: this.page.getByRole('button', { name: 'Sign up' }),
         closeBtnInModal: this.page.getByRole('button', { name: 'Close' }).first(),
         logInUserField: this.page.locator('input[id="loginusername"]'),
         logInPasswordField: this.page.locator('input[id="loginpassword"]'),
-        logInBtnInModal: this.page.getByRole('button', { name: 'Log in' }),
+        logInBtnInModal: this.page.locator('button[onclick="logIn()"]'),
         nameOfLoggedUser: this.page.locator('a[id="nameofuser"]'),
     };
 
