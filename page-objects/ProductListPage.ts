@@ -1,8 +1,11 @@
 import { Page, Locator } from '@playwright/test';
-import BasePage from './BasePage';
+import { BasePage, Header} from '@poms';
 import { Environment } from '@enums';
 
 export default class ProductListPage extends BasePage {
+    //Page declarations
+    header: Header;
+
 
     /**
      * Locator that targets every product title currently displayed on PLP.
@@ -29,10 +32,12 @@ export default class ProductListPage extends BasePage {
 
     constructor(page: Page) {
         super(page);
-        this.productNameList = this.getLocator(this.productListPageLocators.productNameList);
-        this.productPriceList = this.getLocator(this.productListPageLocators.productPriceList);
-        this.nextPageBtn = this.getLocator(this.productListPageLocators.nextPageBtn);
-        this.previousPageBtn = this.getLocator(this.productListPageLocators.previousPageBtn);
+        this.header = new Header(page);
+        //Locators initialization
+        this.productNameList = this.getLocator(this.productListPageLocators.productNameList).describe('Product Name List');
+        this.productPriceList = this.getLocator(this.productListPageLocators.productPriceList).describe('Product Price List');
+        this.nextPageBtn = this.getLocator(this.productListPageLocators.nextPageBtn).describe('Next Page Button');
+        this.previousPageBtn = this.getLocator(this.productListPageLocators.previousPageBtn).describe('Previous Page Button');
     }
 
     async selectNextBtn(): Promise<void> {
