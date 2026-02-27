@@ -5,15 +5,15 @@ import { TIMEOUTS } from '@enums';
 
 test('DEBL-2 | Place an order for one product',
     { tag: ['@DEBL-2', '@smoke', '@regression'] },
-    async ({ productListPage, productDetailsPage, cartPage, page }) => {
+    async ({ homePage, productDetailsPage, cartPage, page }) => {
         let productName: string | null;
         let productPrice: string | null;
 
 
-    await test.step('Navigate to Product List page and click on the first product', async () => {
-        await productListPage.navigateTo();
-        await expect(productListPage.productNameList.first()).toBeVisible({ timeout: TIMEOUTS.Default });
-        await productListPage.productNameList.first().click();
+    await test.step('Navigate to Home page and click on the first product', async () => {
+        await homePage.navigateTo();
+        await expect(homePage.productNameList.first()).toBeVisible({ timeout: TIMEOUTS.Default });
+        await homePage.productNameList.first().click();
     });
 
     await test.step('Store product information and add it to cart', async () => {

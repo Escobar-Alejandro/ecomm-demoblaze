@@ -2,7 +2,7 @@ import { Page, Locator } from '@playwright/test';
 import { BasePage, Header} from '@poms';
 import { Environment } from '@enums';
 
-export default class ProductListPage extends BasePage {
+export default class HomePage extends BasePage {
     //Page declarations
     header: Header;
 
@@ -20,7 +20,7 @@ export default class ProductListPage extends BasePage {
     nextPageBtn: Locator;
     previousPageBtn: Locator;
 
-    readonly productListPageLocators = {
+    readonly homePageLocators = {
         productNameList: {
             [Environment.Prod]: '.card-title a',
             [Environment.Staging]: '.card-title a',
@@ -34,10 +34,10 @@ export default class ProductListPage extends BasePage {
         super(page);
         this.header = new Header(page);
         //Locators initialization
-        this.productNameList = this.getLocator(this.productListPageLocators.productNameList).describe('Product Name List');
-        this.productPriceList = this.getLocator(this.productListPageLocators.productPriceList).describe('Product Price List');
-        this.nextPageBtn = this.getLocator(this.productListPageLocators.nextPageBtn).describe('Next Page Button');
-        this.previousPageBtn = this.getLocator(this.productListPageLocators.previousPageBtn).describe('Previous Page Button');
+        this.productNameList = this.getLocator(this.homePageLocators.productNameList).describe('Product Name List');
+        this.productPriceList = this.getLocator(this.homePageLocators.productPriceList).describe('Product Price List');
+        this.nextPageBtn = this.getLocator(this.homePageLocators.nextPageBtn).describe('Next Page Button');
+        this.previousPageBtn = this.getLocator(this.homePageLocators.previousPageBtn).describe('Previous Page Button');
     }
 
     async selectNextBtn(): Promise<void> {

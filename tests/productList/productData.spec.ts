@@ -4,17 +4,17 @@ import { writeFile } from 'fs/promises';
 import { mkdirSync, existsSync } from 'fs';
 
 
-test('DEBL-1 | Retrieve and store product data from Product List Page',
+test('DEBL-1 | Retrieve and store product data from Home page',
     { tag: ['@DEBL-1', '@smoke', '@regression'] },
-    async ({ productListPage, page }) => {
+    async ({ homePage, page }) => {
         
     const productDataArray: { name: string; price: number; link: string }[] = [];
     const outputDir = './output';
     if (!existsSync(outputDir)) mkdirSync(outputDir);
 
-    await test.step('Navigate to Product List page', async () => {
-        await productListPage.navigateTo();
-        await productListPage.productNameList.first().waitFor({ state: 'visible', timeout: TIMEOUTS.Default });
+    await test.step('Navigate to Home page', async () => {
+        await homePage.navigateTo();
+        await homePage.productNameList.first().waitFor({ state: 'visible', timeout: TIMEOUTS.Default });
     });
 
     await test.step('Store product data in a json, reading up to 5 pages', async () => {
@@ -22,12 +22,12 @@ test('DEBL-1 | Retrieve and store product data from Product List Page',
         let finalPageReached = false;
 
         for (let pageNumber = 0; pageNumber < 5 || finalPageReached; pageNumber++){
-            await productListPage.productPriceList.first().waitFor({ state: 'visible', timeout: TIMEOUTS.Default });
+            await homePage.productPriceList.first().waitFor({ state: 'visible', timeout: TIMEOUTS.Default });
 
-            await productListPage.fillProductDataArrayFromCurrentPage(productDataArray);
+            await homePage.fillProductDataArrayFromCurrentPage(productDataArray);
 
             try {
-                if (await productListPage.tryWaitForElementToBeHidden(productListPage.nextPageBtn)) {
+                if (await homePage.tryWaitForElementToBeHidden(homePage.nextPageBtn)) {
                     finalPageReached = true;
                     console.log('Final page reached. No more product data to retrieve.');
                     break;
@@ -36,8 +36,8 @@ test('DEBL-1 | Retrieve and store product data from Product List Page',
                 console.warn('Error while checking if next page button is hidden:', { cause: e });
             }
 
-            await productListPage.nextPageBtn.scrollIntoViewIfNeeded();
-            await productListPage.selectNextBtn();
+            await homePage.nextPageBtn.scrollIntoViewIfNeeded();
+            await homePage.selectNextBtn();
             
             // Wait for the pagination request to complete before proceeding to the next iteration.
             // I usually prefer waiting for the visibility of an element or some other change, but in this case
