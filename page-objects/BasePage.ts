@@ -121,7 +121,15 @@ export default abstract class BasePage {
             throw new Error(`Failed to get locator`, { cause: error });
         }
     }
-
+    /**
+     * Tries to wait for an element to be hidden within a specified timeout.
+     * @param locator - The locator of the element to wait for.
+     * @param timeout - The maximum time to wait for the element to be hidden.
+     * @returns A promise that resolves to true if the element becomes hidden, false otherwise.
+     * Catches any errors that occur during the wait and logs a warning instead of throwing an exception.
+     * Useful for cases where we know that an element may be hidden under certain conditions, but need to
+     * iterate before reaching an expected outcome. Example usage on test DEBL-1.
+     */
     async tryWaitForElementToBeHidden(locator: Locator, timeout = TIMEOUTS.Short): Promise<boolean> {
         try {
             await locator.waitFor({ state: 'hidden', timeout });
