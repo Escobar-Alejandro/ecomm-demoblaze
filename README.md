@@ -1,6 +1,6 @@
 # ecomm-demoblaze
 
-Automation testing framework for the Demoblaze e-commerce site, built with TypeScript + Playwright using a Page Object Model (POM) design pattern.
+Automation testing framework for the Demoblaze e-commerce site located in: https://www.demoblaze.com/ , built with TypeScript + Playwright using a Page Object Model (POM) design pattern.
 
 ## 1) Contents
 
