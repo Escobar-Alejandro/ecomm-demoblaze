@@ -3,7 +3,7 @@ import { TIMEOUTS } from '@models/enums/Timeouts';
 import { expect } from '@playwright/test';
 
 
-test('DEBL-4 | Log in form',
+test('DEBL-4 | Log in feature - Verify that a user can log in successfully',
     { tag: ['@DEBL-4', '@smoke', '@regression'] },
     async ({ homePage }) => {
         const username = 'tester';
