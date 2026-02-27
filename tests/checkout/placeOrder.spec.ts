@@ -35,8 +35,8 @@ test('DEBL-2 | Place an order for one product',
         await expect(cartPage.productContainerList.first()).toBeVisible();
         
         const isPresent = await page.locator('body').innerText();
-        await expect(isPresent, `Expected product name "${productName}" to be present in the cart`).toContain(productName);
-        await expect(isPresent, `Expected product price "${productPrice}" to be present in the cart`).toContain(productPrice);
+            expect(isPresent, `Expected product name "${productName}" to be present in the cart`).toContain(productName);
+            expect(isPresent, `Expected product price "${productPrice}" to be present in the cart`).toContain(productPrice);
     });
 
     await test.step('Click on Place Order button and verify that order form is displayed', async () => {
